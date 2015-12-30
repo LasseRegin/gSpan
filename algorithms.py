@@ -1,3 +1,7 @@
+"""
+    Author: Lasse Regin Nielsen
+"""
+
 from __future__ import print_function
 import os, csv
 import numpy as np
