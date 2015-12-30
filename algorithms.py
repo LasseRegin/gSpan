@@ -1,5 +1,5 @@
 from __future__ import print_function
-import csv, os, sys
+import os, csv
 import numpy as np
 filepath = os.path.dirname(os.path.abspath(__file__))
 
@@ -616,34 +616,3 @@ def g_span(C, D, min_sup, extensions):
         if (sup_C_prime >= min_sup) and is_canonical(C_prime):
             extensions.append(C)
             g_span(C_prime, D, min_sup, extensions)
-
-def main(filename, min_sup=2):
-    filename = os.path.join(filepath, filename)
-    graphs = load_graphs(filename)
-    n = len(graphs)
-    extensions = []
-    g_span([], graphs, min_sup=min_sup, extensions=extensions)
-    for i, ext in enumerate(extensions):
-        print('Pattern %d' % (i+1))
-        for _c in ext:
-            print(_c)
-        print('')
-
-if __name__ == '__main__':
-    if ('--help' in sys.argv) or ('-h' in sys.argv):
-        print("")
-        print("Finds possible frequent and canonical extensions of C in D, using")
-        print("min_sup as lowest allowed support value.")
-        print("Usage: %s FILENAME minsup" % (sys.argv[0]))
-        print("")
-        print("FILENAME: Relative path of graph data file.")
-        print("minsup:   Minimum support value.")
-    else:
-        if len(sys.argv) == 3:
-            kwargs = {}
-            kwargs['filename'] = 'data/iris.txt'
-            kwargs['filename'] = sys.argv[1]
-            kwargs['min_sup'] = int(sys.argv[2])
-            main(**kwargs)
-        else:
-            sys.exit("Not correct arguments provided. Use %s -h for more information" % (sys.argv[0]))
