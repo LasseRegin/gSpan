@@ -618,5 +618,5 @@ def g_span(C, D, min_sup, extensions):
         sup_C_prime = sup_t
         # recursively call gSpan if code is frequent and canonical
         if (sup_C_prime >= min_sup) and is_canonical(C_prime):
-            extensions.append(C)
+            extensions.append(C_prime)
             g_span(C_prime, D, min_sup, extensions)
